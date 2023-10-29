@@ -1,5 +1,4 @@
 import PrismaClient from "@prisma/client";
-//import { Monto } from "../interfaces/monto.interface";
 
 const prisma = new PrismaClient.PrismaClient();
 

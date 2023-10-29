@@ -1,4 +1,3 @@
-//import { Pago } from "../interfaces/pago.interface";
 import PrismaClient from "@prisma/client";
 import { parentPort } from "worker_threads";
 

@@ -11,8 +11,8 @@ const minMontoDeuda = process.env.minMontoDeuda;
 const maxMontoDeuda = process.env.maxMontoDeuda;
 const maxPersonas = process.env.maxPersonas;
 
-console.log("minNroDeudas", process.env.minNroDeudas);
-console.log("maxNroDeudas", process.env.maxNroDeudas);
+console.log("Mínimo número de deudas cargadas: ", process.env.minNroDeudas);
+console.log("Máximo número de deudas cargadas: ", process.env.maxNroDeudas);
 
 function randomize(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
