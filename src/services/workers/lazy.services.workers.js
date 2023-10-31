@@ -1,11 +1,15 @@
 import { Worker } from "bullmq";
 import params from "../../config/params.config.js";
 
+// TODO Instanciar el constructor del worker sin la función y hacer que no tenga ningún procesador la cola
+
+// const worker = new Worker("lazy-queue", null, {
+//   connection: params.redisConnection,
+// });
+
 const worker = new Worker(
   "lazy-queue",
   (job) => {
-    // console.log("Iniciamos proceso LAZYQUEUE");
-    // console.log("job.data.JQStatus", job.data.JQStatus);
     // No tiene una notificación de la cola de notificacoines
     // Viene de la cola de servicios y generó un error
     if (
@@ -13,7 +17,6 @@ const worker = new Worker(
       job.data.JQStatus &&
       job.data.JQStatus === "failed"
     ) {
-      // console.log("Ejecutado FAILED de cola JOBS");
       throw new Error("JOBQueue Proxy error for lazyQueue");
     } else {
       // Viene de la cola de notificaciones y generó un error
@@ -23,6 +26,7 @@ const worker = new Worker(
         throw new Error("NOTIFQueue Proxy error for lazyQueue");
       }
     }
+    //job.updateProgress(100);
   },
   {
     connection: params.redisConnection,

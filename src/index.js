@@ -3,6 +3,7 @@ import cors from "cors";
 import pagos from "./routes/pagos.routes.js";
 import deudas from "./routes/deudas.routes.js";
 import personas from "./routes/persona.routes.js";
+import threads from "./routes/threads.routes.js";
 import jobWorker from "./services/workers/jobs.services.workers.js";
 import notifWorker from "./services/workers/notifications.services.workers.js";
 import lazyWorker from "./services/workers/lazy.services.workers.js";
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use("/api", pagos);
 app.use("/api", deudas);
 app.use("/api", personas);
+app.use("/api", threads);
+
 app.post("/api/messages", (req, res) => {
   res.send("Mensaje recibido");
 });

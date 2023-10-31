@@ -27,6 +27,9 @@ const worker = new Worker(
     ) {
       //console.log("job.data(notification)", job.data);
       await answerClient(job.data.body.responseURL, job.data);
+      // if (res.status() === 200) {
+      //   job.updateProgress(100);
+      // }
       //return "completed";
     }
     //TODO Falló la notificación al cliente, reintentar indefinidamente
@@ -47,7 +50,11 @@ worker.on("completed", async (job, returnvalue) => {
     `[NOTI-QUEUE] [ESTADO: completed] [JOB: ${job.name}] [HASH: ${job.data.body.pagoHash}]`
   );
   job.data.NQStatus = "completed";
-  queues.lazyQueue.add(`job-queue.${job.data.name}.jobId: ${job.id}`, job.data);
+
+  queues.lazyQueue.add(
+    `notif-queue.${job.data.name}.jobId: ${job.id}`,
+    job.data
+  );
 });
 
 worker.on("error", (err) => {
@@ -76,7 +83,7 @@ worker.on("failed", (job, error) => {
     job.data.NQStatus = "failed";
     job.data.NQErrorMessage = error.message;
     queues.lazyQueue.add(
-      `job-queue.${job.data.name}.jobId: ${job.id}`,
+      `notif-queue.${job.data.name}.jobId: ${job.id}`,
       job.data
     );
   }

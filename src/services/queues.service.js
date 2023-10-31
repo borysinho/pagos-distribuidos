@@ -46,21 +46,26 @@ const arenaQueues = [
   {
     type: "bullmq",
     name: "jobs-queue",
-    hostId: "Services Queue Manager",
+    hostId: "Servicios",
     redis: params.redisConnection,
   },
   {
     type: "bullmq",
     name: "notifications-queue",
-    hostId: "Notifications Queue Manager",
+    hostId: "Notificaciones",
     redis: params.redisConnection,
   },
   {
     type: "bullmq",
     name: "lazy-queue",
-    hostId: "Completed and Failed Jobs Queue Manager",
+    hostId: "NO usar BULL para histórico como cola independiente",
     redis: params.redisConnection,
   },
 ];
 
-export default { jobQueue, notificationsQueue, lazyQueue, arenaQueues };
+export default {
+  jobQueue,
+  notificationsQueue,
+  lazyQueue,
+  arenaQueues,
+};
