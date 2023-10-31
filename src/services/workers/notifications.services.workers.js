@@ -6,7 +6,7 @@ import queues from "../queues.service.js";
 const answerClient = async (responseURL, data) => {
   // try {
   const headers = { "Content-Type": "application/json" };
-  await axios.post(responseURL, data, { headers });
+  await axios.post(responseURL, data, { headers, timeout: 3000 });
   // .then(
   //   (response) => response.data
   //   //console.log(`[SERVER] - [PROCESS: undefined] - [STATUS: Procesado]`)
